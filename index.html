@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <title>OSCxTechno</title>
+    <link rel="icon" href="/pic/osc.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen animated-gradient relative">
+    <div class="navbar bg-gradient-to-r from-orange-500 to-orange-400 text-white flex justify-between items-center p-1">
+        <a class="btn btn-ghost text-lg font-bold">
+            <img src="/pic/osc.png" alt="OSC logo" class="h-10 mr-2" />OSC x กลุ่มสาระการเรียนรู้วิทยาศาสตร์และเทคโนโลยี
+        </a>
+        <a href="https://github.com/tainnnn" target="_blank" class="flex items-center">
+            <img src="/pic/github.png" alt="GitHub" class="h-8 w-8" />
+        </a>
+    </div>
+
+    <div class="nq-container">
+        <script>
+            const createNQs = () => {
+                for (let i = 0; i < 100; i++) {
+                    let nq = document.createElement('div');
+                    nq.className = 'nq';
+                    nq.textContent = '.'; // เปลี่ยนตัวอักษร
+                    document.body.appendChild(nq);
+                    animateNQ(nq);
+                }
+            };
+
+            const animateNQ = (nq) => {
+                const startX = Math.random() * window.innerWidth;
+                const startY = Math.random() * (window.innerHeight - 150) + 50;
+                nq.style.left = `${startX}px`;
+                nq.style.top = `${startY}px`;
+                
+                const directionX = Math.random() > 0.5 ? 1 : -1;
+                const speed = Math.random() * 1 + 0.2;
+
+                const move = () => {
+                    const rect = nq.getBoundingClientRect();
+                    if (rect.right < 0 || rect.left > window.innerWidth) {
+                        nq.style.left = `${startX}px`;
+                        nq.style.top = `${startY}px`;
+                    } else {
+                        nq.style.left = `${rect.left + (speed * directionX)}px`;
+                    }
+                    requestAnimationFrame(move);
+                };
+                move();
+            };
+
+            createNQs();
+        </script>
+    </div>
+
+    <div class="flex flex-col justify-center items-center min-h-screen mb-2 mt-4">
+        <h1 class="text-center text-2xl font-bold mb-2 bg-blue-500 text-white p-2 rounded-lg shadow-lg">
+            จงเลือกคำตอบให้ถูกต้อง
+        </h1>
+        <div class="container mx-auto bg-blue-500 border border-white rounded-lg shadow-md max-w-xl p-4 mb-20">
+            <div id="question-container" class="bg-white shadow-md rounded-lg p-4">
+                <img src="pic/html.png" alt="HTML Image" class="w-full h-auto max-w-[468px] mx-auto custom-img">
+            </div>
+            <button id="next-button" class="hidden bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+                ถัดไป
+            </button>
+            <div id="score-container" class="hidden mt-4 text-xl text-center text-green-600"></div>
+        </div>
+        <div class="absolute bottom-2 left-0 right-0 mb-4">
+            <div class="flex justify-end w-full mb-16">
+                <button id="music-toggle-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl mx-2">
+                    ▶
+                </button>
+                <audio id="background-music" loop>
+                    <source src="mario.mp3" type="audio/mp3">
+                </audio>
+                <button class="question-set-btn bg-orange-600 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-1 rounded" data-set="1">ชุดที่ 1</button>
+                <button class="question-set-btn bg-orange-600 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-1 rounded" data-set="2">ชุดที่ 2</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js" defer></script>
+</body>
+</html>
