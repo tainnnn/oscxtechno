@@ -111,7 +111,7 @@ let currentQuestions = questions1;
 
 // จับเวลา
 let timer;
-const timeLimit = 10;
+const timeLimit = 15;
 let timeLeft = timeLimit;
 
 function startTimer() {
