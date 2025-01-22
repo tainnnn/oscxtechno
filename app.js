@@ -229,8 +229,14 @@ document.getElementById('next-button').addEventListener('click', () => {
     }
 });
 
+
+const answerButtonSound = new Audio('xbox-click.mp3'); // เสียงปุ่ม
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('answer-btn')) {
+
+        answerButtonSound.currentTime = 0;
+        answerButtonSound.play();
+
         const selectedAnswer = event.target.textContent;
         const correctAnswer = currentQuestions[currentQuestionIndex].answer;
         
