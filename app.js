@@ -253,6 +253,7 @@ document.addEventListener('click', (event) => {
     }
 });
 
+const ScoreSound = new Audio('surprise.mp3'); // เสียงโขว์ score
 function showScore() {
     const questionContainer = document.getElementById('question-container');
     questionContainer.innerHTML = '';
@@ -267,6 +268,7 @@ function showScore() {
             </button>
         </div>
     `;
+    ScoreSound.play();
     scoreContainer.classList.remove('hidden');
     
     document.getElementById('restart-button').addEventListener('click', () => {
